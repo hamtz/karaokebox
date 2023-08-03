@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Music Box</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="#">Music Box</a>
+      <!-- Sidebar Toggle-->
+      <button
+        class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+        id="sidebarToggle"
+        href="#!"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navbar Search-->
+
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown"></li>
+      </ul>
+    </nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div class="sb-sidenav-menu-heading">Utama</div>
+              <a class="nav-link" href="/">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                Dashboard
+              </a>
+              <!-- <div class="sb-sidenav-menu-heading">Pengaturan</div>
+              <a class="nav-link" href="/listmusic">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-user fa-fw"></i>
+                </div>
+                Daftar
+              </a> -->
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Administrator
+          </div>
+        </nav>
+      </div>
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4">Music Box</h1>
+
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <!-- <h3>150</h3> -->
+                    <h3 class="page-title">
+                      31-July-2023 | <span id="clock"></span>
+                    </h3>
+                    <p>Time Now</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-bag"></i>
+                  </div>
+                  <!-- <a href="#" class="small-box-footer"
+                    >More info <i class="fas fa-arrow-circle-right"></i
+                  ></a> -->
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <!-- <h3>2</h3>
+                    <p>User Registrations</p> -->
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <!-- <a href="#" class="small-box-footer"
+                    >More info <i class="fas fa-arrow-circle-right"></i
+                  ></a> -->
+                </div>
+              </div>
+            </div>
+
+            <ol class="breadcrumb mb-4">
+              <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+            </ol>
+            <div class="row mb-4">
+              <div class="col"></div>
+            </div>
+            <div class="row">
+              <!-- ... kode sebelumnya ... -->
+
+              <!-- ... kode setelahnya ... -->
+
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <!-- <i class="fas fa-chart-area me-1"></i> -->
+                    PLAY
+                  </div>
+                  <div class="card-body">
+                    <video id="video-player" width="640" height="480" controls>
+                      <!-- Di bawah ini, kita memberikan placeholder untuk src video yang akan diubah dengan JavaScript -->
+                      <source id="video-source" src="" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <!-- <i class="fas fa-chart-bar me-1"></i> -->
+                    LIST MUSIC
+                    <div class="form-group">
+                      <form class="form-inline">
+                        <!-- <label for="searchInput">Cari Judul Video:</label> -->
+                        <input
+                          type="text"
+                          class="form-control mb-2"
+                          id="searchInput"
+                          placeholder="Masukkan judul video"
+                        />
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          onclick="searchVideo()"
+                        >
+                          Cari
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          onclick="resetSearch()"
+                        >
+                          Reset
+                        </button>
+                        <!-- Tombol Reset -->
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="card-body">
+                    <div class="pagination">
+                      <ul class="pagination-list" id="paginationList">
+                        <!-- Bagian div dengan class "list-group" yang akan diisi oleh JavaScript -->
+                        <div class="list-group" id="videoListDiv"></div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-4">
+            <div
+              class="d-flex align-items-center justify-content-between small"
+            >
+              <div class="text-muted">Copyright &copy; Ilham Natsir 2023</div>
+              <div>
+                <!-- <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a> -->
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/scripts.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/assets/demo/chart-area-demo.js"></script>
+    <script src="assets/assets/demo/chart-bar-demo.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/datatables-simple-demo.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var videosPerPage = 5; // Jumlah video per halaman (sesuaikan sesuai keinginan)
+      var currentPage = 1; // Halaman saat ini
+      var totalVideos = originalVideoList.length; // Jumlah total video
+      var totalPages = Math.ceil(totalVideos / videosPerPage); // Jumlah total halaman
+
+      function showVideosByPage(pageNumber) {
+        var startIndex = (pageNumber - 1) * videosPerPage;
+        var endIndex = startIndex + videosPerPage;
+        var videosToShow = originalVideoList.slice(startIndex, endIndex);
+
+        var listGroup = document.getElementById("videoListDiv");
+        listGroup.innerHTML = "";
+
+        var videoPlayer = document.getElementById("video-player");
+        videoPlayer.pause();
+
+        videosToShow.forEach(function (video_filename) {
+          var listItem = document.createElement("div");
+          listItem.classList.add(
+            "list-group-item",
+            "list-group-item-action",
+            "active"
+          );
+          listItem.innerHTML = `<a href="#" class="btn btn-info" onclick="playVideo('${video_filename}')">${video_filename}</a><hr>`;
+          listGroup.appendChild(listItem);
+        });
+      }
+
+      // Panggil fungsi untuk menampilkan video pada halaman pertama
+      showVideosByPage(currentPage);
+
+      function buildPagination() {
+        var paginationList = document.getElementById("paginationList");
+        paginationList.innerHTML = "";
+
+        for (var page = 1; page <= totalPages; page++) {
+          var listItem = document.createElement("li");
+          var linkItem = document.createElement("a");
+
+          if (page === currentPage) {
+            listItem.classList.add("active");
+          }
+
+          linkItem.classList.add("pagination-link");
+          linkItem.textContent = page;
+          linkItem.addEventListener("click", function (event) {
+            event.preventDefault();
+            currentPage = parseInt(this.textContent);
+            showVideosByPage(currentPage);
+            buildPagination();
+          });
+
+          listItem.appendChild(linkItem);
+          paginationList.appendChild(listItem);
+        }
+      }
+
+      // Panggil fungsi untuk membangun pagination saat halaman dimuat
+      buildPagination();
+    </script>
+
+    <script>
+      function playVideo(filename) {
+        if (filename) {
+          // Mengambil elemen video dan source menggunakan ID
+          var videoPlayer = document.getElementById("video-player");
+          var videoSource = document.getElementById("video-source");
+
+          // Mengubah atribut src video menjadi video yang dipilih
+          videoSource.setAttribute(
+            "src",
+            "{{ url_for('video', filename='') }}" + filename
+          );
+
+          // Memuat ulang video setelah mengubah src
+          videoPlayer.load();
+        } else {
+          // Jika argumen kosong, tampilkan pesan kesalahan atau lakukan tindakan lain
+          console.log("Argumen filename kosong, video tidak akan diputar.");
+        }
+      }
+    </script>
+    <script>
+      // Simpan daftar video asli
+      var originalVideoList = [
+        "{% for video_filename in video_list %}",
+        "{{ video_filename }}",
+        "{% endfor %}",
+      ];
+
+      function searchVideo() {
+        const inputValue = document.getElementById("searchInput").value;
+
+        // Memeriksa apakah input kosong
+        if (inputValue.trim() === "") {
+          // Menampilkan alert jika input kosong
+          alert("Harap isi judul video sebelum mencari.");
+        } else {
+          // Lakukan aksi pencarian video (misalnya, pergi ke halaman hasil pencarian)
+          // Di sini Anda bisa menambahkan kode untuk mengambil judul video yang dimasukkan pengguna dan melakukan tindakan yang sesuai
+
+          var searchInput = document
+            .getElementById("searchInput")
+            .value.trim()
+            .toLowerCase();
+          var filteredVideoList = originalVideoList.filter(function (video) {
+            return video.toLowerCase().includes(searchInput);
+          });
+
+          var listGroup = document.querySelector(".list-group");
+          listGroup.innerHTML = "";
+
+          var videoPlayer = document.getElementById("video-player");
+          videoPlayer.pause(); // Jeda pemutaran video saat mencari
+
+          // Tambahkan kembali daftar video yang sesuai dengan pencarian
+          filteredVideoList.forEach(function (video_filename) {
+            var listItem = document.createElement("div");
+            listItem.classList.add(
+              "list-group-item",
+              "list-group-item-action",
+              "active"
+            );
+            listItem.innerHTML = `<a href="#" class="btn btn-info" onclick="playVideo('${video_filename}')">${video_filename}</a><hr>`;
+            listGroup.appendChild(listItem);
+          });
+
+          // Jika tidak ada video yang sesuai, tampilkan pesan
+          if (filteredVideoList.length === 0) {
+            var noResultMessage = document.createElement("div");
+            noResultMessage.classList.add(
+              "list-group-item",
+              "list-group-item-action",
+              "active"
+            );
+            noResultMessage.textContent =
+              "Tidak ditemukan video dengan judul yang cocok.";
+            listGroup.appendChild(noResultMessage);
+          }
+        }
+      }
+    </script>
+
+    <script>
+      // ... Fungsi-fungsi lainnya ...
+
+      // Fungsi untuk membangun daftar video dengan tautan yang sesuai
+      function buildVideoList() {
+        var videoListDiv = document.getElementById("videoListDiv");
+        videoListDiv.innerHTML = ""; // Kosongkan isi div sebelum membangun kembali
+
+        ("{% for video_filename in video_list %}");
+        var videoLink = document.createElement("a");
+        videoLink.classList.add("btn", "btn-info");
+        videoLink.textContent = "{{ video_filename }}";
+        videoLink.addEventListener("click", function () {
+          playVideo("{{ video_filename }}");
+        });
+
+        var hrElement = document.createElement("hr");
+
+        videoListDiv.appendChild(videoLink);
+        videoListDiv.appendChild(hrElement);
+        ("{% endfor %}");
+      }
+
+      // Panggil fungsi buildVideoList untuk membangun daftar video saat halaman dimuat
+      buildVideoList();
+
+      function resetSearch() {
+        var searchInput = document.getElementById("searchInput");
+        searchInput.value = ""; // Menghapus teks input pencarian
+
+        buildVideoList(); // Memanggil fungsi untuk membangun daftar video kembali
+      }
+    </script>
+
+    <script>
+      var clockElement = document.getElementById("clock");
+
+      function clock() {
+        clockElement.textContent = new Date().toString().slice(15, 24);
+      }
+
+      setInterval(clock, 1000);
+    </script>
+  </body>
+</html>
