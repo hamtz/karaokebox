@@ -229,6 +229,13 @@
       var totalVideos = originalVideoList.length; // Jumlah total video
       var totalPages = Math.ceil(totalVideos / videosPerPage); // Jumlah total halaman
 
+      // Simpan daftar video asli
+      var originalVideoList = [
+        "{% for video_filename in video_list %}",
+        "{{ video_filename }}",
+        "{% endfor %}",
+      ];
+
       function showVideosByPage(pageNumber) {
         var startIndex = (pageNumber - 1) * videosPerPage;
         var endIndex = startIndex + videosPerPage;
@@ -368,8 +375,6 @@
     </script>
 
     <script>
-      // ... Fungsi-fungsi lainnya ...
-
       // Fungsi untuk membangun daftar video dengan tautan yang sesuai
       function buildVideoList() {
         var videoListDiv = document.getElementById("videoListDiv");
