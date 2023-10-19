@@ -12,6 +12,19 @@ def get_video_list():
     return video_list
 
 
+
+# def get_video_list():
+#     video_folder = 'listvideo'
+#     video_list = []
+#     for filename in os.listdir(video_folder):
+#         if filename.endswith('.mp4') or filename.endswith('.mkv'):
+#             # Hapus ekstensi file
+#             video_name = os.path.splitext(filename)[0]
+#             video_list.append(video_name)
+#     return video_list
+
+
+
 @app.route('/')
 def index():
     video_list = get_video_list()
@@ -23,10 +36,10 @@ def video(filename):
     return send_from_directory('listvideo', filename)
 
 
-@app.route('/video_list_json')
-def video_list_json():
-    video_list = get_video_list()
-    return jsonify(video_list)
+# @app.route('/video_list_json')
+# def video_list_json():
+#     video_list = get_video_list()
+#     return jsonify(video_list)
 
 
 if __name__ == '__main__':

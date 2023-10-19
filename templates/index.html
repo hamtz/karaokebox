@@ -114,18 +114,19 @@
               <div class="col"></div>
             </div>
             <div class="row">
-              <!-- ... kode sebelumnya ... -->
-
-              <!-- ... kode setelahnya ... -->
-
-              <div class="col-xl-6">
+              <div class="col">
                 <div class="card mb-4">
                   <div class="card-header">
                     <!-- <i class="fas fa-chart-area me-1"></i> -->
                     PLAY
                   </div>
                   <div class="card-body">
-                    <video id="video-player" width="640" height="480" controls>
+                    <video
+                      id="video-player"
+                      width="480"
+                      controls
+                      controlsList="nodownload"
+                    >
                       <!-- Di bawah ini, kita memberikan placeholder untuk src video yang akan diubah dengan JavaScript -->
                       <source id="video-source" src="" type="video/mp4" />
                       Your browser does not support the video tag.
@@ -133,7 +134,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-6">
+              <div class="col">
                 <div class="card mb-4">
                   <div class="card-header">
                     <!-- <i class="fas fa-chart-bar me-1"></i> -->
@@ -167,11 +168,8 @@
                   </div>
 
                   <div class="card-body">
-                    <div class="pagination">
-                      <ul class="pagination-list" id="paginationList">
-                        <!-- Bagian div dengan class "list-group" yang akan diisi oleh JavaScript -->
-                        <div class="list-group" id="videoListDiv"></div>
-                      </ul>
+                    <div style="width: auto; height: 400px; overflow-y: scroll">
+                      <div class="list-group" id="videoListDiv"></div>
                     </div>
                   </div>
                 </div>
@@ -223,75 +221,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
-      var videosPerPage = 5; // Jumlah video per halaman (sesuaikan sesuai keinginan)
-      var currentPage = 1; // Halaman saat ini
-      var totalVideos = originalVideoList.length; // Jumlah total video
-      var totalPages = Math.ceil(totalVideos / videosPerPage); // Jumlah total halaman
-
-      // Simpan daftar video asli
-      var originalVideoList = [
-        "{% for video_filename in video_list %}",
-        "{{ video_filename }}",
-        "{% endfor %}",
-      ];
-
-      function showVideosByPage(pageNumber) {
-        var startIndex = (pageNumber - 1) * videosPerPage;
-        var endIndex = startIndex + videosPerPage;
-        var videosToShow = originalVideoList.slice(startIndex, endIndex);
-
-        var listGroup = document.getElementById("videoListDiv");
-        listGroup.innerHTML = "";
-
-        var videoPlayer = document.getElementById("video-player");
-        videoPlayer.pause();
-
-        videosToShow.forEach(function (video_filename) {
-          var listItem = document.createElement("div");
-          listItem.classList.add(
-            "list-group-item",
-            "list-group-item-action",
-            "active"
-          );
-          listItem.innerHTML = `<a href="#" class="btn btn-info" onclick="playVideo('${video_filename}')">${video_filename}</a><hr>`;
-          listGroup.appendChild(listItem);
-        });
-      }
-
-      // Panggil fungsi untuk menampilkan video pada halaman pertama
-      showVideosByPage(currentPage);
-
-      function buildPagination() {
-        var paginationList = document.getElementById("paginationList");
-        paginationList.innerHTML = "";
-
-        for (var page = 1; page <= totalPages; page++) {
-          var listItem = document.createElement("li");
-          var linkItem = document.createElement("a");
-
-          if (page === currentPage) {
-            listItem.classList.add("active");
-          }
-
-          linkItem.classList.add("pagination-link");
-          linkItem.textContent = page;
-          linkItem.addEventListener("click", function (event) {
-            event.preventDefault();
-            currentPage = parseInt(this.textContent);
-            showVideosByPage(currentPage);
-            buildPagination();
-          });
-
-          listItem.appendChild(linkItem);
-          paginationList.appendChild(listItem);
-        }
-      }
-
-      // Panggil fungsi untuk membangun pagination saat halaman dimuat
-      buildPagination();
-    </script>
-
+    <!-- play lagu yang di klik -->
     <script>
       function playVideo(filename) {
         if (filename) {
@@ -313,6 +243,8 @@
         }
       }
     </script>
+
+    <!-- mencari lagu sesuai nama -->
     <script>
       // Simpan daftar video asli
       var originalVideoList = [
@@ -331,7 +263,6 @@
         } else {
           // Lakukan aksi pencarian video (misalnya, pergi ke halaman hasil pencarian)
           // Di sini Anda bisa menambahkan kode untuk mengambil judul video yang dimasukkan pengguna dan melakukan tindakan yang sesuai
-
           var searchInput = document
             .getElementById("searchInput")
             .value.trim()
@@ -349,11 +280,7 @@
           // Tambahkan kembali daftar video yang sesuai dengan pencarian
           filteredVideoList.forEach(function (video_filename) {
             var listItem = document.createElement("div");
-            listItem.classList.add(
-              "list-group-item",
-              "list-group-item-action",
-              "active"
-            );
+            listItem.classList.add("list-group-item", "list-group-item-action");
             listItem.innerHTML = `<a href="#" class="btn btn-info" onclick="playVideo('${video_filename}')">${video_filename}</a><hr>`;
             listGroup.appendChild(listItem);
           });
@@ -380,24 +307,41 @@
         var videoListDiv = document.getElementById("videoListDiv");
         videoListDiv.innerHTML = ""; // Kosongkan isi div sebelum membangun kembali
 
-        ("{% for video_filename in video_list %}");
-        var videoLink = document.createElement("a");
-        videoLink.classList.add("btn", "btn-info");
-        videoLink.textContent = "{{ video_filename }}";
-        videoLink.addEventListener("click", function () {
-          playVideo("{{ video_filename }}");
+        // Simpan daftar video asli
+        var originalVideoList = [
+          " {% for video_filename in video_list %}",
+          "{{ video_filename }}",
+          " {% endfor %}",
+        ];
+
+        originalVideoList.forEach(function (video_filename) {
+          // Hanya tambahkan jika nama file tidak kosong
+          if (video_filename.trim() !== "") {
+            var videoNameWithoutExtension = video_filename.replace(
+              /\.[^/.]+$/,
+              ""
+            ); // Menghapus ekstensi
+            var videoLink = document.createElement("a");
+            videoLink.classList.add("btn", "btn-info");
+            videoLink.textContent = videoNameWithoutExtension; // Tampilkan nama file tanpa ekstensi
+            videoLink.addEventListener("click", function () {
+              playVideo(video_filename);
+            });
+
+            var hrElement = document.createElement("hr");
+
+            videoListDiv.appendChild(videoLink);
+            videoListDiv.appendChild(hrElement);
+          }
         });
-
-        var hrElement = document.createElement("hr");
-
-        videoListDiv.appendChild(videoLink);
-        videoListDiv.appendChild(hrElement);
-        ("{% endfor %}");
       }
 
       // Panggil fungsi buildVideoList untuk membangun daftar video saat halaman dimuat
       buildVideoList();
+    </script>
 
+    <!-- reset pencarian -->
+    <script>
       function resetSearch() {
         var searchInput = document.getElementById("searchInput");
         searchInput.value = ""; // Menghapus teks input pencarian
