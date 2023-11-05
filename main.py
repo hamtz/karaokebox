@@ -70,6 +70,38 @@ def download():
     return render_template('download.html', message=message)
 
 
+@app.route('/edit_video/<filename>', methods=['GET', 'POST'])
+def edit_video(filename):
+    # Jika metode adalah GET, tampilkan formulir pengubahan nama
+    if request.method == 'GET':
+        return render_template('edit_video.html', video_filename=filename)
+
+    # Jika metode adalah POST, tangani permintaan pengubahan nama
+    if request.method == 'POST':
+        new_filename = request.form.get('new_filename')
+
+        # Lakukan validasi nama file baru jika diperlukan
+
+        # Ubah nama file
+        try:
+            old_path = os.path.join('listvideo', filename)
+            new_path = os.path.join('listvideo', new_filename)
+            os.rename(old_path, new_path)
+
+            return redirect(url_for('listmusik'))
+        except Exception as e:
+            error_message = "Gagal mengubah nama file: " + str(e)
+            return render_template('edit_video.html', video_filename=filename, error=error_message)
+
+
+@app.route('/delete_video/<filename>')
+def delete_video(filename):
+    # Tambahkan logika penghapusan video di sini
+    # Misalnya, Anda dapat menghapus video dari sistem file
+    # Setelah menghapus, redirect pengguna ke halaman listmusik
+    return redirect(url_for('listmusik'))
+
+
 # @app.route('/video_list_json')
 # def video_list_json():
 #     video_list = get_video_list()
