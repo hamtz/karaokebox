@@ -9,6 +9,7 @@ ALLOWED_EXTENSIONS = {'mp4', 'mkv'}
 
 def get_video_list():
     video_folder = 'listvideo'
+    # video_folder = '/media/ilham/SONG' // ubah semua path sesuai path yg digunakan
     video_list = []
     for filename in os.listdir(video_folder):
         if filename.endswith('.mp4') or filename.endswith('.mkv'):
@@ -49,7 +50,7 @@ def download():
             output_path = 'listvideo/'
             youtube_stream.download(output_path=output_path)
 
-            message = "Download is completed successfully"
+            message = "Download selesai"
         except:
             message = "An error has occurred"
     return render_template('download.html', message=message)
