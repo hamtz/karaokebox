@@ -120,7 +120,11 @@
               <!-- <li class="breadcrumb-item active">Dashboard</li> -->
             </ol>
             <div class="row mb-4">
-              <div class="col"></div>
+              <div class="col">
+                <div class="alert alert-primary" role="alert">
+                  {{ message }}
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -130,7 +134,25 @@
                     PLAY
                   </div>
                   <div class="card-body">
-                    <p>------------------</p>
+                    <form
+                      method="POST"
+                      action="/upload"
+                      enctype="multipart/form-data"
+                      id="upload-form"
+                    >
+                      <input
+                        type="file"
+                        name="file"
+                        id="file-input"
+                        accept=".mp4,.mkv"
+                      />
+                      <input
+                        type="submit"
+                        value="Unggah"
+                        id="upload-button"
+                        disabled
+                      />
+                    </form>
                   </div>
                 </div>
               </div>
@@ -188,7 +210,8 @@
                               >
                               <a
                                 href="{{ url_for('delete_video', filename=video_filename) }}"
-                                class="btn btn-danger"
+                                class="btn btn-danger delete-video"
+                                data-filename="{{ video_filename }}"
                                 >Delete</a
                               >
                             </td>
@@ -224,12 +247,12 @@
       crossorigin="anonymous"
     ></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script
+    <!-- <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
       crossorigin="anonymous"
     ></script>
     <script src="assets/assets/demo/chart-area-demo.js"></script>
-    <script src="assets/assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/assets/demo/chart-bar-demo.js"></script> -->
     <script
       src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
       crossorigin="anonymous"
@@ -247,140 +270,33 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- play lagu yang di klik -->
+    <!-- validasi upload file -->
     <script>
-      function playVideo(filename) {
-        if (filename) {
-          // Mengambil elemen video dan source menggunakan ID
-          var videoPlayer = document.getElementById("video-player");
-          var videoSource = document.getElementById("video-source");
+      document
+        .getElementById("file-input")
+        .addEventListener("change", function () {
+          var fileInput = this;
+          var uploadButton = document.getElementById("upload-button");
 
-          // Mengubah atribut src video menjadi video yang dipilih
-          videoSource.setAttribute(
-            "src",
-            "{{ url_for('video', filename='') }}" + filename
-          );
-
-          // Memuat ulang video setelah mengubah src
-          videoPlayer.load();
-        } else {
-          // Jika argumen kosong, tampilkan pesan kesalahan atau lakukan tindakan lain
-          console.log("Argumen filename kosong, video tidak akan diputar.");
-        }
-      }
-    </script>
-
-    <!-- mencari lagu sesuai nama -->
-    <script>
-      // Simpan daftar video asli
-      var originalVideoList = [
-        "{% for video_filename in video_list %}",
-        "{{ video_filename }}",
-        "{% endfor %}",
-      ];
-
-      function searchVideo() {
-        const inputValue = document.getElementById("searchInput").value;
-
-        // Memeriksa apakah input kosong
-        if (inputValue.trim() === "") {
-          // Menampilkan alert jika input kosong
-          alert("Harap isi judul video sebelum mencari.");
-        } else {
-          // Lakukan aksi pencarian video (misalnya, pergi ke halaman hasil pencarian)
-          // Di sini Anda bisa menambahkan kode untuk mengambil judul video yang dimasukkan pengguna dan melakukan tindakan yang sesuai
-          var searchInput = document
-            .getElementById("searchInput")
-            .value.trim()
-            .toLowerCase();
-          var filteredVideoList = originalVideoList.filter(function (video) {
-            return video.toLowerCase().includes(searchInput);
-          });
-
-          var listGroup = document.querySelector(".list-group");
-          listGroup.innerHTML = "";
-
-          var videoPlayer = document.getElementById("video-player");
-          videoPlayer.pause(); // Jeda pemutaran video saat mencari
-
-          // Tambahkan kembali daftar video yang sesuai dengan pencarian
-          filteredVideoList.forEach(function (video_filename) {
-            var listItem = document.createElement("div");
-            listItem.classList.add("list-group-item", "list-group-item-action");
-            listItem.innerHTML = `<a href="#" class="btn btn-info" onclick="playVideo('${video_filename}')">${video_filename}</a><hr>`;
-            listGroup.appendChild(listItem);
-          });
-
-          // Jika tidak ada video yang sesuai, tampilkan pesan
-          if (filteredVideoList.length === 0) {
-            var noResultMessage = document.createElement("div");
-            noResultMessage.classList.add(
-              "list-group-item",
-              "list-group-item-action",
-              "active"
-            );
-            noResultMessage.textContent =
-              "Tidak ditemukan video dengan judul yang cocok.";
-            listGroup.appendChild(noResultMessage);
-          }
-        }
-      }
-    </script>
-
-    <script>
-      // Fungsi untuk membangun daftar video dalam sebuah tabel
-      function buildVideoList() {
-        var videoListDiv = document.getElementById("videoListDiv");
-        videoListDiv.innerHTML = ""; // Kosongkan isi div sebelum membangun kembali
-
-        // Simpan daftar video asli
-        var originalVideoList = [
-          " {% for video_filename in video_list %}",
-          "{{ video_filename }}",
-          "{% endfor %}",
-        ];
-
-        var table = document.createElement("table");
-        table.classList.add("table");
-
-        originalVideoList.forEach(function (video_filename) {
-          // Hanya tambahkan jika nama file tidak kosong
-          if (video_filename.trim() !== "") {
-            var videoNameWithoutExtension = video_filename.replace(
-              /\.[^/.]+$/,
-              ""
-            ); // Menghapus ekstensi
-
-            var row = table.insertRow();
-            var cell1 = row.insertCell(0);
-            cell1.textContent = videoNameWithoutExtension;
-
-            var cell2 = row.insertCell(1);
-            var playButton = document.createElement("button");
-            playButton.textContent = "Play";
-            playButton.classList.add("btn", "btn-info");
-            playButton.addEventListener("click", function () {
-              playVideo(video_filename);
-            });
-            cell2.appendChild(playButton);
+          if (fileInput.files.length > 0) {
+            uploadButton.removeAttribute("disabled");
+          } else {
+            uploadButton.setAttribute("disabled", "disabled");
           }
         });
-
-        videoListDiv.appendChild(table);
-      }
-
-      // Panggil fungsi buildVideoList untuk membangun daftar video saat halaman dimuat
-      buildVideoList();
     </script>
 
-    <!-- reset pencarian -->
+    <!-- Delete Video -->
     <script>
-      function resetSearch() {
-        var searchInput = document.getElementById("searchInput");
-        searchInput.value = ""; // Menghapus teks input pencarian
-
-        buildVideoList(); // Memanggil fungsi untuk membangun daftar video kembali
-      }
+      document.querySelectorAll(".delete-video").forEach(function (button) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          var filename = button.getAttribute("data-filename");
+          if (confirm("Anda yakin ingin menghapus file " + filename + "?")) {
+            window.location.href = button.getAttribute("href");
+          }
+        });
+      });
     </script>
 
     <script>

@@ -1,9 +1,11 @@
 import os
 
-from flask import Flask, render_template, send_from_directory, request, redirect, url_for
+from flask import Flask, render_template, send_from_directory, request, redirect, url_for,session
 from pytube import YouTube
 
 app = Flask(__name__, static_folder='assets', template_folder='templates')
+app.secret_key = '1'
+ALLOWED_EXTENSIONS = {'mp4', 'mkv'}
 
 def get_video_list():
     video_folder = 'listvideo'
@@ -12,19 +14,6 @@ def get_video_list():
         if filename.endswith('.mp4') or filename.endswith('.mkv'):
             video_list.append(filename)
     return video_list
-
-
-
-# def get_video_list():
-#     video_folder = 'listvideo'
-#     video_list = []
-#     for filename in os.listdir(video_folder):
-#         if filename.endswith('.mp4') or filename.endswith('.mkv'):
-#             # Hapus ekstensi file
-#             video_name = os.path.splitext(filename)[0]
-#             video_list.append(video_name)
-#     return video_list
-
 
 
 @app.route('/')
@@ -37,13 +26,9 @@ def index():
 @app.route('/listmusic')
 def listmusik():
     video_list = get_video_list()
-    return render_template('listmusik.html', video_list=video_list)
+    message = session.pop('message', '')  # Ambil pesan dari session (jika ada)
+    return render_template('listmusik.html', video_list=video_list, message=message)
 
-
-# @app.route('/downloadmusic')
-# def downloadmusik():
-#     video_list = get_video_list()
-#     return render_template('download.html', video_list=video_list)
 
 
 @app.route('/video/<filename>')
@@ -96,11 +81,39 @@ def edit_video(filename):
 
 @app.route('/delete_video/<filename>')
 def delete_video(filename):
-    # Tambahkan logika penghapusan video di sini
-    # Misalnya, Anda dapat menghapus video dari sistem file
-    # Setelah menghapus, redirect pengguna ke halaman listmusik
+    try:
+        file_path = os.path.join('listvideo', filename)
+        os.remove(file_path)
+        message = "File berhasil dihapus"
+    except Exception as e:
+        message = "Gagal menghapus file: " + str(e)
+
+    session['message'] = message  # Simpan pesan dalam session
     return redirect(url_for('listmusik'))
 
+
+# Fungsi untuk memeriksa ekstensi file yang diterima
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    message = ""
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file and allowed_file(uploaded_file.filename):
+            try:
+                # Simpan file yang diunggah di folder "listvideo"
+                uploaded_file.save('listvideo/' + uploaded_file.filename)
+                message = "Upload Berhasil"
+            except Exception as e:
+                message = "Upload Gagal: " + str(e)
+        else:
+            message = "Upload Gagal: Format file tidak didukung"
+
+    session['message'] = message  # Simpan pesan dalam session
+    return redirect(url_for('listmusik'))
 
 # @app.route('/video_list_json')
 # def video_list_json():
