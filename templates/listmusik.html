@@ -194,7 +194,7 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>Nama Video</th>
+                            <th>Nama Lagu</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -297,6 +297,43 @@
           }
         });
       });
+    </script>
+
+    <!-- serch video -->
+    <script>
+      function searchVideo() {
+        var searchText = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        var table = document.querySelector("table");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+          // Mulai dari indeks 1 untuk melewati baris judul
+          var cell = rows[i].getElementsByTagName("td")[0];
+          if (cell) {
+            var cellText = cell.textContent || cell.innerText;
+            if (cellText.toLowerCase().indexOf(searchText) > -1) {
+              rows[i].style.display = "";
+            } else {
+              rows[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- tombol reset  -->
+    <script>
+      function resetSearch() {
+        document.getElementById("searchInput").value = "";
+        var table = document.querySelector("table");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+          rows[i].style.display = "";
+        }
+      }
     </script>
 
     <script>
