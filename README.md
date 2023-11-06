@@ -1,5 +1,5 @@
 # karaokebox
-raspberry karaoke video player
+Web Based Karaoke Application
 
 
 make "listfolder" folder and save your video here
