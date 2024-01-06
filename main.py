@@ -1,11 +1,12 @@
 import os
 
-from flask import Flask, render_template, send_from_directory, request, redirect, url_for,session
+from flask import Flask, render_template, send_from_directory, request, redirect, url_for, session
 from pytube import YouTube
 
 app = Flask(__name__, static_folder='assets', template_folder='templates')
 app.secret_key = '1'
 ALLOWED_EXTENSIONS = {'mp4', 'mkv'}
+
 
 def get_video_list():
     video_folder = 'listvideo'
@@ -26,6 +27,7 @@ def get_audio_list():
             audio_list.append(filename)
     return audio_list
 
+
 @app.route('/')
 def index():
     video_list = get_video_list()
@@ -35,8 +37,7 @@ def index():
 @app.route('/musik')
 def musik():
     audio_list = get_audio_list()
-    return render_template('audio.html', audio_list=audio_list)
-
+    return render_template('indexaudio.html', audio_list=audio_list)
 
 
 @app.route('/listmusic')
@@ -46,10 +47,14 @@ def listmusik():
     return render_template('listmusik.html', video_list=video_list, message=message)
 
 
-
 @app.route('/video/<filename>')
 def video(filename):
     return send_from_directory('listvideo', filename)
+
+
+@app.route('/audio/<filename>')
+def audio(filename):
+    return send_from_directory('listaudio', filename)
 
 
 @app.route('/downloadmusic', methods=['GET', 'POST'])
@@ -130,6 +135,7 @@ def upload_file():
 
     session['message'] = message  # Simpan pesan dalam session
     return redirect(url_for('listmusik'))
+
 
 # @app.route('/video_list_json')
 # def video_list_json():
