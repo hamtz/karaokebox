@@ -17,10 +17,25 @@ def get_video_list():
     return video_list
 
 
+def get_audio_list():
+    audio_folder = 'listaudio'
+    # audio_folder = '/media/ilham/SONG' // ubah semua path sesuai path yg digunakan
+    audio_list = []
+    for filename in os.listdir(audio_folder):
+        if filename.endswith('.mp3') or filename.endswith('.wav'):
+            audio_list.append(filename)
+    return audio_list
+
 @app.route('/')
 def index():
     video_list = get_video_list()
     return render_template('index.html', video_list=video_list)
+
+
+@app.route('/musik')
+def musik():
+    audio_list = get_audio_list()
+    return render_template('audio.html', audio_list=audio_list)
 
 
 
