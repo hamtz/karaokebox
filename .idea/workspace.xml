@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="865fee56-41e8-45e0-8d91-cf2265b13891" name="Changes" comment="tambahan menu play musik">
+      <change afterPath="$PROJECT_DIR$/listaudio/Alisky  Grow feat VØR NCS Release.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/listaudio/Diviners  Savannah feat Philly K NCS Release.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/audio.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2TTp9wtGNkzirj7aXRYGVaVeWxd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/listaudio" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Riku\Documents\GitHub\karaokebox\listaudio" />
+      <recent name="C:\Users\Riku\Documents\GitHub\karaokebox\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="karaokebox" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="865fee56-41e8-45e0-8d91-cf2265b13891" name="Changes" comment="" />
+      <created>1691076779258</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691076779258</updated>
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1691077249156</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691077249156</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <created>1691077304951</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691077304951</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first commit">
+      <created>1691078353946</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691078353946</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix list and search">
+      <created>1697695295804</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697695295804</updated>
+    </task>
+    <task id="LOCAL-00005" summary="menu listmusic dan menu download dari yutub">
+      <created>1699122396324</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699122396324</updated>
+    </task>
+    <task id="LOCAL-00006" summary="menu listmusic dan menu download dari yutub">
+      <created>1699122519886</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699122519886</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update dan delete file music">
+      <created>1699169424144</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699169424144</updated>
+    </task>
+    <task id="LOCAL-00008" summary="upload lagu">
+      <created>1699241150995</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699241150995</updated>
+    </task>
+    <task id="LOCAL-00009" summary="upload lagu">
+      <created>1699241207153</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699241207153</updated>
+    </task>
+    <task id="LOCAL-00010" summary="upload lagu - fix search upload lagu">
+      <created>1699241738667</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699241738667</updated>
+    </task>
+    <task id="LOCAL-00011" summary="upload lagu - fix search upload lagu">
+      <created>1699244899286</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699244899286</updated>
+    </task>
+    <task id="LOCAL-00012" summary="upload lagu - fix search upload lagu">
+      <created>1699245014781</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699245014782</updated>
+    </task>
+    <task id="LOCAL-00013" summary="upload lagu - fix search upload lagu">
+      <created>1699245060646</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699245060646</updated>
+    </task>
+    <task id="LOCAL-00014" summary="tambahan menu play musik">
+      <created>1704508715376</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704508715376</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="fix list and search" />
+    <MESSAGE value="menu listmusic dan menu download dari yutub" />
+    <MESSAGE value="update dan delete file music" />
+    <MESSAGE value="upload lagu" />
+    <MESSAGE value="upload lagu - fix search upload lagu" />
+    <MESSAGE value="tambahan menu play musik" />
+    <option name="LAST_COMMIT_MESSAGE" value="tambahan menu play musik" />
+  </component>
+</project>
