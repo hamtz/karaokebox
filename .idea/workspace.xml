@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865fee56-41e8-45e0-8d91-cf2265b13891" name="Changes" comment="tambahan menu play musik">
-      <change afterPath="$PROJECT_DIR$/listaudio/Alisky  Grow feat VØR NCS Release.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/listaudio/Diviners  Savannah feat Philly K NCS Release.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/audio.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    <list default="true" id="865fee56-41e8-45e0-8d91-cf2265b13891" name="Changes" comment="tambahan menu play musik dan fix pencarian">
+      <change beforePath="$PROJECT_DIR$/templates/indexaudio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/indexaudio.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704508715376</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="tambahan menu play musik dan fix pencarian">
+      <created>1704511711237</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704511711237</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +199,7 @@
     <MESSAGE value="upload lagu" />
     <MESSAGE value="upload lagu - fix search upload lagu" />
     <MESSAGE value="tambahan menu play musik" />
-    <option name="LAST_COMMIT_MESSAGE" value="tambahan menu play musik" />
+    <MESSAGE value="tambahan menu play musik dan fix pencarian" />
+    <option name="LAST_COMMIT_MESSAGE" value="tambahan menu play musik dan fix pencarian" />
   </component>
 </project>

@@ -50,11 +50,17 @@ def listmusik():
 @app.route('/video/<filename>')
 def video(filename):
     return send_from_directory('listvideo', filename)
+    #  return send_from_directory('/media/ilham/SONG/VIDEO', filename)
+
+
 
 
 @app.route('/audio/<filename>')
 def audio(filename):
     return send_from_directory('listaudio', filename)
+#  return send_from_directory('/media/ilham/SONG/AUDIO', filename)
+
+
 
 
 @app.route('/downloadmusic', methods=['GET', 'POST'])
